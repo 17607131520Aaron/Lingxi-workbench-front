@@ -10,9 +10,20 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.3.2",
+    "element-plus": "^2.14.0",
     "nuxt": "^4.4.5",
+    "pinia": "^3.0.4",
     "vue": "^3.5.34",
     "vue-router": "^5.0.6"
+  },
+  "devDependencies": {
+    "@element-plus/nuxt": "^1.1.5",
+    "@nuxt/eslint": "^1.15.2",
+    "@pinia/nuxt": "^0.11.3",
+    "@unocss/nuxt": "^66.6.8",
+    "@vueuse/nuxt": "^14.3.0",
+    "sass": "^1.99.0"
   },
   "packageManager": "pnpm@11.1.0+sha512.0c44e842e5686b2c061a81adda8b2258bd8818e9704b2cf2c63d56b931a7b2e910092e085027003b96ca3911ab56a07f6df5abaed2be9925034cdd686a535b14"
 }
