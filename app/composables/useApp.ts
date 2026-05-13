@@ -4,14 +4,6 @@ export const useApp = () => {
 
   const modules = [
     {
-      title: "AI 对话",
-      description: "基于 SenseNova · LLM API 服务平台实现 AI 对话。",
-      entry: "进入模块",
-      path: "/modules/ai-chat",
-      badge: "工具",
-      tags: ["AI", "聊天"],
-    },
-    {
       title: "SenseNova · LLM API 服务平台",
       description: "SenseNova · LLM API 服务平台。",
       entry: "打开模块",
@@ -24,19 +16,19 @@ export const useApp = () => {
       description:
         "基于 SenseNova · LLM API 服务平台实现 + nest.js 服务的 AI 对话平台。",
       entry: "进入模块",
-      path: "/modules/ai-chat",
+      path: "/ai-chat",
       badge: "工具",
       tags: ["AI", "聊天"],
     },
   ];
 
   const tickerItems = [
-    "统一登录态",
-    "BFF 鉴权转发",
-    "AI 对话模块",
-    "模块化工作台",
-    "权限中间件",
-    "持续扩展中",
+    "统一身份认证",
+    "BFF 安全代理",
+    "AI 能力接入",
+    "模块化应用编排",
+    "权限与访问控制",
+    "平台能力持续演进",
   ];
 
   const displayName = computed(() => authStore.user?.username || "访客");
