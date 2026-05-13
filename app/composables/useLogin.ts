@@ -1,14 +1,8 @@
 import type { FormInstance, FormRules } from "element-plus";
-import { clearToken, syncTokenFromResponse } from "~/utils/auth-token";
+import { login } from "~/api/userApi";
 import { request } from "~/utils/request";
 
 type AuthMode = "login" | "register";
-
-type LoginPayload = {
-  username: string;
-  password: string;
-  browserSessionId?: string;
-};
 
 type RegisterPayload = {
   username: string;
@@ -16,18 +10,6 @@ type RegisterPayload = {
   password: string;
   confirmPassword: string;
 };
-
-type LoginResponse = {
-  accessToken?: string;
-  access_token?: string;
-  token?: string;
-};
-
-const login = (payload: LoginPayload) =>
-  request<LoginResponse>("/auth/login", {
-    method: "POST",
-    body: payload,
-  });
 
 const register = (payload: RegisterPayload) =>
   request("/auth/register", {
@@ -37,6 +19,8 @@ const register = (payload: RegisterPayload) =>
 
 export const useLogin = () => {
   const router = useRouter();
+  const route = useRoute();
+  const authStore = useAuthStore();
 
   const loading = ref(false);
   const mode = ref<AuthMode>("login");
@@ -102,15 +86,19 @@ export const useLogin = () => {
 
     try {
       loading.value = true;
-      const response = await login({
+      await login({
         username: loginForm.username,
         password: loginForm.password,
+        rememberMe: loginForm.remember,
       });
-
-      syncTokenFromResponse(response);
+      await authStore.fetchProfile(true);
 
       ElMessage.success("登录成功");
-      await router.push("/home");
+      const redirect =
+        typeof route.query.redirect === "string" && route.query.redirect.startsWith("/")
+          ? route.query.redirect
+          : "/home";
+      await router.push(redirect);
     } catch {
     } finally {
       loading.value = false;
@@ -142,7 +130,7 @@ export const useLogin = () => {
   };
 
   const handleLogout = async () => {
-    clearToken();
+    await authStore.signOut();
     await router.push("/login");
   };
 

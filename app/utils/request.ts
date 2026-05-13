@@ -1,5 +1,3 @@
-import { getToken } from "./auth-token";
-
 export type ApiResponse<T> = {
   code: number | string;
   data: T;
@@ -23,12 +21,6 @@ const createBaseRequest = () => {
         if (cookie && !headers.has("cookie")) {
           headers.set("cookie", cookie);
         }
-      }
-
-      const token = getToken();
-
-      if (token && !headers.has("Authorization")) {
-        headers.set("Authorization", `Bearer ${token}`);
       }
 
       options.headers = headers;

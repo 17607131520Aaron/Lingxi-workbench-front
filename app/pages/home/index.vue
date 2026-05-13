@@ -43,13 +43,11 @@
 </template>
 
 <script setup lang="ts">
-import { clearToken } from "~/utils/auth-token";
-
-const router = useRouter();
+const authStore = useAuthStore();
 
 const handleLogout = async () => {
-  clearToken();
-  await router.push("/login");
+  await authStore.signOut();
+  await navigateTo("/login");
 };
 
 const tasks = [

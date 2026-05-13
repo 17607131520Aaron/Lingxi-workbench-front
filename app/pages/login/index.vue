@@ -32,7 +32,7 @@
               </defs>
             </svg>
           </div>
-          <span class="auth-logo-text">MindBridge AI</span>
+          <span class="auth-logo-text">灵犀 AI</span>
         </div>
 
         <h1 class="auth-hero-title">

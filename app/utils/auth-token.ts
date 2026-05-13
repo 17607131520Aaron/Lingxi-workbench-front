@@ -1,10 +1,6 @@
 export const TOKEN_COOKIE_KEY = "token";
 export const TOKEN_STORAGE_KEY = "token";
 
-const getTokenCookie = () => useCookie<string | null>(TOKEN_COOKIE_KEY);
-
-export const getTokenFromCookie = () => getTokenCookie().value;
-
 export const getTokenFromStorage = () => {
   if (import.meta.server) {
     return null;
@@ -13,19 +9,9 @@ export const getTokenFromStorage = () => {
   return localStorage.getItem(TOKEN_STORAGE_KEY);
 };
 
-export const getToken = () => getTokenFromCookie() || getTokenFromStorage();
-
-export const setToken = (token: string) => {
-  getTokenCookie().value = token;
-
-  if (import.meta.client) {
-    localStorage.setItem(TOKEN_STORAGE_KEY, token);
-  }
-};
+export const getToken = () => getTokenFromStorage();
 
 export const clearToken = () => {
-  getTokenCookie().value = null;
-
   if (import.meta.client) {
     localStorage.removeItem(TOKEN_STORAGE_KEY);
   }
@@ -55,10 +41,6 @@ const pickTokenValue = (payload: unknown): string | null => {
 
 export const syncTokenFromResponse = (payload: unknown) => {
   const token = pickTokenValue(payload);
-
-  if (token) {
-    setToken(token);
-  }
 
   return token;
 };
