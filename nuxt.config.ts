@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
   devServer: {
-    port: 8000,
+    port: Number(process.env.NUXT_DEV_SERVER_PORT || 8000),
   },
   modules: [
     "@element-plus/nuxt",
@@ -27,6 +27,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
+      appEnv: process.env.NUXT_PUBLIC_APP_ENV || "test",
       apiBase: process.env.NUXT_PUBLIC_API_BASE || "http://120.53.227.126:9999",
     },
   },

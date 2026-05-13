@@ -3,10 +3,17 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
+    "build": "bash ./scripts/run-with-env.sh test nuxt build",
+    "build:test": "bash ./scripts/run-with-env.sh test nuxt build",
+    "build:prod": "bash ./scripts/run-with-env.sh prod nuxt build",
+    "dev": "bash ./scripts/run-with-env.sh test nuxt dev",
+    "dev:test": "bash ./scripts/run-with-env.sh test nuxt dev",
+    "dev:prod": "bash ./scripts/run-with-env.sh prod nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview",
+    "preview": "bash ./scripts/run-with-env.sh test nuxt preview",
+    "preview:test": "bash ./scripts/run-with-env.sh test nuxt preview",
+    "preview:pre": "bash ./scripts/run-with-env.sh pre nuxt preview",
+    "preview:prod": "bash ./scripts/run-with-env.sh prod nuxt preview",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {

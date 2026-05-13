@@ -1,0 +1,7 @@
+.git
+.gitignore
+.nuxt
+node_modules
+.DS_Store
+README.md
+scripts
